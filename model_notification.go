@@ -223,7 +223,7 @@ type Notification struct {
 	// Channel: Push Notifications Platform: iOS 12+ When using thread_id, you can also control the count of the number of notifications in the group. For example, if the group already has 12 notifications, and you send a new notification with summary_arg_count = 2, the new total will be 14 and the summary will be \"14 more notifications from summary_arg\" 
 	SummaryArgCount *int32 `json:"summary_arg_count,omitempty"`
 	// Channel: Email Required.  The subject of the email. 
-	EmailSubect *string `json:"email_subect,omitempty"`
+	EmailSubject *string `json:"email_subject,omitempty"`
 	// Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an <a> tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid. 
 	EmailBody *string `json:"email_body,omitempty"`
 	// Channel: Email The name the email is from. If not specified, will default to \"from name\" set in the OneSignal Dashboard Email Settings. 
@@ -3675,36 +3675,36 @@ func (o *Notification) SetSummaryArgCount(v int32) {
 	o.SummaryArgCount = &v
 }
 
-// GetEmailSubect returns the EmailSubect field value if set, zero value otherwise.
-func (o *Notification) GetEmailSubect() string {
-	if o == nil || o.EmailSubect == nil {
+// GetEmailSubject returns the EmailSubject field value if set, zero value otherwise.
+func (o *Notification) GetEmailSubject() string {
+	if o == nil || o.EmailSubject == nil {
 		var ret string
 		return ret
 	}
-	return *o.EmailSubect
+	return *o.EmailSubject
 }
 
-// GetEmailSubectOk returns a tuple with the EmailSubect field value if set, nil otherwise
+// GetEmailSubjectOk returns a tuple with the EmailSubject field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Notification) GetEmailSubectOk() (*string, bool) {
-	if o == nil || o.EmailSubect == nil {
+func (o *Notification) GetEmailSubjectOk() (*string, bool) {
+	if o == nil || o.EmailSubject == nil {
 		return nil, false
 	}
-	return o.EmailSubect, true
+	return o.EmailSubject, true
 }
 
-// HasEmailSubect returns a boolean if a field has been set.
-func (o *Notification) HasEmailSubect() bool {
-	if o != nil && o.EmailSubect != nil {
+// HasEmailSubject returns a boolean if a field has been set.
+func (o *Notification) HasEmailSubject() bool {
+	if o != nil && o.EmailSubject != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetEmailSubect gets a reference to the given string and assigns it to the EmailSubect field.
-func (o *Notification) SetEmailSubect(v string) {
-	o.EmailSubect = &v
+// SetEmailSubject gets a reference to the given string and assigns it to the EmailSubject field.
+func (o *Notification) SetEmailSubject(v string) {
+	o.EmailSubject = &v
 }
 
 // GetEmailBody returns the EmailBody field value if set, zero value otherwise.
@@ -4187,8 +4187,8 @@ func (o Notification) MarshalJSON() ([]byte, error) {
 	if o.SummaryArgCount != nil {
 		toSerialize["summary_arg_count"] = o.SummaryArgCount
 	}
-	if o.EmailSubect != nil {
-		toSerialize["email_subect"] = o.EmailSubect
+	if o.EmailSubject != nil {
+		toSerialize["email_subject"] = o.EmailSubject
 	}
 	if o.EmailBody != nil {
 		toSerialize["email_body"] = o.EmailBody
@@ -4329,7 +4329,7 @@ func (o *Notification) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "thread_id")
 		delete(additionalProperties, "summary_arg")
 		delete(additionalProperties, "summary_arg_count")
-		delete(additionalProperties, "email_subect")
+		delete(additionalProperties, "email_subject")
 		delete(additionalProperties, "email_body")
 		delete(additionalProperties, "email_from_name")
 		delete(additionalProperties, "email_from_address")

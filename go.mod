@@ -1,7 +1,5 @@
-module github.com/OneSignal/onesignal-go-client
+module github.com/namnm1991/onesignal-go-api
 
 go 1.13
 
-require (
-	golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
-)
+require golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
