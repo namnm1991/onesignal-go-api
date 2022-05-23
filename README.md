@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to the official OneSignal Go Client 👋</h1>
+# Go API client for openapi
 
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
@@ -12,20 +12,18 @@ For more information, please visit [https://onesignal.com](https://onesignal.com
 
 ## Installation
 
-```shell
-go get github.com/OneSignal/onesignal-go-client
-```
-
 Install the following dependencies:
 
 ```shell
+go get github.com/stretchr/testify/assert
 go get golang.org/x/oauth2
+go get golang.org/x/net/context
 ```
 
 Put the package under your project folder and add the following in import:
 
 ```golang
-import "onesignal"
+import openapi "github.com/GIT_USER_ID/GIT_REPO_ID"
 ```
 
 To use a proxy, set the environment variable `HTTP_PROXY`:
@@ -43,7 +41,7 @@ Default configuration comes with `Servers` field that contains server objects as
 For using other server than the one defined on index 0 set context value `sw.ContextServerIndex` of type `int`.
 
 ```golang
-ctx := context.WithValue(context.Background(), onesignal.ContextServerIndex, 1)
+ctx := context.WithValue(context.Background(), openapi.ContextServerIndex, 1)
 ```
 
 ### Templated Server URL
@@ -51,7 +49,7 @@ ctx := context.WithValue(context.Background(), onesignal.ContextServerIndex, 1)
 Templated server URL is formatted using default variables from configuration or from context value `sw.ContextServerVariables` of type `map[string]string`.
 
 ```golang
-ctx := context.WithValue(context.Background(), onesignal.ContextServerVariables, map[string]string{
+ctx := context.WithValue(context.Background(), openapi.ContextServerVariables, map[string]string{
 	"basePath": "v2",
 })
 ```
@@ -65,10 +63,10 @@ An operation is uniquely identified by `"{classname}Service.{nickname}"` string.
 Similar rules for overriding default operation server index and variables applies by using `sw.ContextOperationServerIndices` and `sw.ContextOperationServerVariables` context maps.
 
 ```
-ctx := context.WithValue(context.Background(), onesignal.ContextOperationServerIndices, map[string]int{
+ctx := context.WithValue(context.Background(), openapi.ContextOperationServerIndices, map[string]int{
 	"{classname}Service.{nickname}": 2,
 })
-ctx = context.WithValue(context.Background(), onesignal.ContextOperationServerVariables, map[string]map[string]string{
+ctx = context.WithValue(context.Background(), openapi.ContextOperationServerVariables, map[string]map[string]string{
 	"{classname}Service.{nickname}": {
 		"port": "8443",
 	},
@@ -145,26 +143,30 @@ Class | Method | HTTP request | Description
 
 
 ## Documentation For Authorization
-Use a OneSignal authentication context for each auth type:
-- `AppAuth`
-- `UserAuth`
+
+
 
 ### app_key
+
 - **Type**: HTTP Bearer token authentication
 
 Example
 
 ```golang
-appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
+r, err := client.Service.Operation(auth, args)
 ```
 
+
 ### user_key
+
 - **Type**: HTTP Bearer token authentication
 
 Example
 
 ```golang
-userAuth := context.WithValue(context.Background(), onesignal.UserAuth, "USER_KEY_STRING")
+auth := context.WithValue(context.Background(), sw.ContextAccessToken, "BEARER_TOKEN_STRING")
+r, err := client.Service.Operation(auth, args)
 ```
 
 

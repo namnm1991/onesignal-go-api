@@ -20,9 +20,9 @@ Name | Type | Description | Notes
 **ChannelForExternalUserIds** | Pointer to **string** | Indicates if the message type when targeting with include_external_user_ids for cases where an email, sms, and/or push subscribers have the same external user id. Example: Use the string \&quot;push\&quot; to indicate you are sending a push notification or the string \&quot;email\&quot;for sending emails or \&quot;sms\&quot;for sending SMS.  | [optional] 
 **AppId** | Pointer to **string** | Required: Your OneSignal Application ID, which can be found in Keys &amp; IDs. It is a UUID and looks similar to 8250eaf6-1a58-489e-b136-7c74a864b434.  | [optional] 
 **ExternalId** | Pointer to **string** | Correlation and idempotency key. A request received with this parameter will first look for another notification with the same external_id. If one exists, a notification will not be sent, and result of the previous operation will instead be returned. Therefore, if you plan on using this feature, it&#39;s important to use a good source of randomness to generate the UUID passed here. This key is only idempotent for 30 days. After 30 days, the notification could be removed from our system and a notification with the same external_id will be sent again.   See Idempotent Notification Requests for more details writeOnly: true  | [optional] 
-**Contents** | Pointer to [**NullableStringMap**](StringMap.md) |  | [optional] 
-**Headings** | Pointer to [**NullableStringMap**](StringMap.md) |  | [optional] 
-**Subtitle** | Pointer to [**NullableStringMap**](StringMap.md) |  | [optional] 
+**Contents** | Pointer to [**StringMap**](StringMap.md) |  | [optional] 
+**Headings** | Pointer to [**StringMap**](StringMap.md) |  | [optional] 
+**Subtitle** | Pointer to [**StringMap**](StringMap.md) |  | [optional] 
 **Data** | Pointer to **map[string]interface{}** | Channel: Push Notifications Platform: Huawei A custom map of data that is passed back to your app. Same as using Additional Data within the dashboard. Can use up to 2048 bytes of data. Example: {\&quot;abc\&quot;: 123, \&quot;foo\&quot;: \&quot;bar\&quot;, \&quot;event_performed\&quot;: true, \&quot;amount\&quot;: 12.1}  | [optional] 
 **HuaweiMsgType** | Pointer to **string** | Channel: Push Notifications Platform: Huawei Use \&quot;data\&quot; or \&quot;message\&quot; depending on the type of notification you are sending. More details in Data &amp; Background Notifications.  | [optional] 
 **Url** | Pointer to **string** | Channel: Push Notifications Platform: All The URL to open in the browser when a user clicks on the notification. Note: iOS needs https or updated NSAppTransportSecurity in plist This field supports inline substitutions. Omit if including web_url or app_url Example: https://onesignal.com  | [optional] 
@@ -86,7 +86,7 @@ Name | Type | Description | Notes
 **ThreadId** | Pointer to **string** | Channel: Push Notifications Platform: iOS 12+ This parameter is supported in iOS 12 and above. It allows you to group related notifications together. If two notifications have the same thread-id, they will both be added to the same group.  | [optional] 
 **SummaryArg** | Pointer to **string** | Channel: Push Notifications Platform: iOS 12+ When using thread_id to create grouped notifications in iOS 12+, you can also control the summary. For example, a grouped notification can say \&quot;12 more notifications from John Doe\&quot;. The summary_arg lets you set the name of the person/thing the notifications are coming from, and will show up as \&quot;X more notifications from summary_arg\&quot;  | [optional] 
 **SummaryArgCount** | Pointer to **int32** | Channel: Push Notifications Platform: iOS 12+ When using thread_id, you can also control the count of the number of notifications in the group. For example, if the group already has 12 notifications, and you send a new notification with summary_arg_count &#x3D; 2, the new total will be 14 and the summary will be \&quot;14 more notifications from summary_arg\&quot;  | [optional] 
-**EmailSubect** | Pointer to **string** | Channel: Email Required.  The subject of the email.  | [optional] 
+**EmailSubject** | Pointer to **string** | Channel: Email Required.  The subject of the email.  | [optional] 
 **EmailBody** | Pointer to **string** | Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an &lt;a&gt; tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid.  | [optional] 
 **EmailFromName** | Pointer to **string** | Channel: Email The name the email is from. If not specified, will default to \&quot;from name\&quot; set in the OneSignal Dashboard Email Settings.  | [optional] 
 **EmailFromAddress** | Pointer to **string** | Channel: Email The email address the email is from. If not specified, will default to \&quot;from email\&quot; set in the OneSignal Dashboard Email Settings.  | [optional] 
@@ -2192,30 +2192,30 @@ SetSummaryArgCount sets SummaryArgCount field to given value.
 
 HasSummaryArgCount returns a boolean if a field has been set.
 
-### GetEmailSubect
+### GetEmailSubject
 
-`func (o *NotificationAllOf) GetEmailSubect() string`
+`func (o *NotificationAllOf) GetEmailSubject() string`
 
-GetEmailSubect returns the EmailSubect field if non-nil, zero value otherwise.
+GetEmailSubject returns the EmailSubject field if non-nil, zero value otherwise.
 
-### GetEmailSubectOk
+### GetEmailSubjectOk
 
-`func (o *NotificationAllOf) GetEmailSubectOk() (*string, bool)`
+`func (o *NotificationAllOf) GetEmailSubjectOk() (*string, bool)`
 
-GetEmailSubectOk returns a tuple with the EmailSubect field if it's non-nil, zero value otherwise
+GetEmailSubjectOk returns a tuple with the EmailSubject field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEmailSubect
+### SetEmailSubject
 
-`func (o *NotificationAllOf) SetEmailSubect(v string)`
+`func (o *NotificationAllOf) SetEmailSubject(v string)`
 
-SetEmailSubect sets EmailSubect field to given value.
+SetEmailSubject sets EmailSubject field to given value.
 
-### HasEmailSubect
+### HasEmailSubject
 
-`func (o *NotificationAllOf) HasEmailSubect() bool`
+`func (o *NotificationAllOf) HasEmailSubject() bool`
 
-HasEmailSubect returns a boolean if a field has been set.
+HasEmailSubject returns a boolean if a field has been set.
 
 ### GetEmailBody
 

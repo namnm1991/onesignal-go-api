@@ -34,10 +34,6 @@ Stop a scheduled or currently outgoing notification
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -47,21 +43,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | 
     notificationId := "notificationId_example" // string | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.CancelNotification(appAuth, notificationId).AppId(appId).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CancelNotification(context.Background(), notificationId).AppId(appId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CancelNotification``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -93,6 +84,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2001**](InlineResponse2001.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -111,10 +106,6 @@ Create an app
 
 
 
-### Authorization
-
-[user_key](../README.md#user_key)
-
 ### Example
 
 ```go
@@ -124,20 +115,15 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     app := *openapiclient.NewApp("Id_example") // App | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    userAuth := context.WithValue(context.Background(), onesignal.UserAuth, "USER_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.CreateApp(userAuth).App(app).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateApp(context.Background()).App(app).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -164,6 +150,10 @@ Name | Type | Description  | Notes
 
 [**App**](App.md)
 
+### Authorization
+
+[user_key](../README.md#user_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -182,10 +172,6 @@ Create notification
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -195,20 +181,15 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     notification := *openapiclient.NewNotification("AppId_example") // Notification | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.CreateNotification(appAuth).Notification(notification).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateNotification(context.Background()).Notification(notification).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateNotification``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -235,6 +216,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse200**](InlineResponse200.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -253,10 +238,6 @@ Add a device
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -266,20 +247,15 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     player := *openapiclient.NewPlayer("Id_example", "AppId_example", int32(123)) // Player | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.CreatePlayer(appAuth).Player(player).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreatePlayer(context.Background()).Player(player).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreatePlayer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -306,6 +282,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2004**](InlineResponse2004.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -324,10 +304,6 @@ Create Segments
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -337,21 +313,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | The OneSignal App ID for your app.  Available in Keys & IDs.
     segment := *openapiclient.NewSegment("Name_example", []openapiclient.FilterExpressions{*openapiclient.NewFilterExpressions("Field_example", "Relation_example")}) // Segment |  (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.CreateSegments(appAuth, appId).Segment(segment).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.CreateSegments(context.Background(), appId).Segment(segment).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateSegments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -383,6 +354,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse201**](InlineResponse201.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -401,10 +376,6 @@ Delete a user record
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -414,21 +385,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | The OneSignal App ID for your app.  Available in Keys & IDs.
     playerId := "playerId_example" // string | The OneSignal player_id
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.DeletePlayer(appAuth, playerId).AppId(appId).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.DeletePlayer(context.Background(), playerId).AppId(appId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeletePlayer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -460,6 +426,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2001**](InlineResponse2001.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -478,10 +448,6 @@ Delete Segments
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -491,21 +457,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | The OneSignal App ID for your app.  Available in Keys & IDs.
     segmentId := "segmentId_example" // string | The segment_id can be found in the URL of the segment when viewing it in the dashboard.
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.DeleteSegments(appAuth, appId, segmentId).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.DeleteSegments(context.Background(), appId, segmentId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteSegments``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -538,6 +499,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2003**](InlineResponse2003.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -556,10 +521,6 @@ CSV export
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -569,21 +530,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | The app ID that you want to export devices from
     exportPlayersRequestBody := *openapiclient.NewExportPlayersRequestBody() // ExportPlayersRequestBody |  (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.ExportPlayers(appAuth, appId).ExportPlayersRequestBody(exportPlayersRequestBody).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.ExportPlayers(context.Background(), appId).ExportPlayersRequestBody(exportPlayersRequestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ExportPlayers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -615,6 +571,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2005**](InlineResponse2005.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -633,10 +593,6 @@ View an app
 
 
 
-### Authorization
-
-[user_key](../README.md#user_key)
-
 ### Example
 
 ```go
@@ -646,20 +602,15 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | An app id
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    userAuth := context.WithValue(context.Background(), onesignal.UserAuth, "USER_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetApp(userAuth, appId).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetApp(context.Background(), appId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -690,6 +641,10 @@ Name | Type | Description  | Notes
 
 [**App**](App.md)
 
+### Authorization
+
+[user_key](../README.md#user_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -708,10 +663,6 @@ View apps
 
 
 
-### Authorization
-
-[user_key](../README.md#user_key)
-
 ### Example
 
 ```go
@@ -721,19 +672,14 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    userAuth := context.WithValue(context.Background(), onesignal.UserAuth, "USER_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetApps(userAuth).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetApps(context.Background()).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApps``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -756,6 +702,10 @@ Other parameters are passed through a pointer to a apiGetAppsRequest struct via 
 
 **string**
 
+### Authorization
+
+[user_key](../README.md#user_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -774,10 +724,6 @@ View notification
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -787,21 +733,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | 
     notificationId := "notificationId_example" // string | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetNotification(appAuth, notificationId).AppId(appId).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetNotification(context.Background(), notificationId).AppId(appId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetNotification``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -833,6 +774,10 @@ Name | Type | Description  | Notes
 
 [**Notification**](Notification.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -851,10 +796,6 @@ Notification History
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -864,21 +805,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     notificationId := "notificationId_example" // string | The \"id\" of the message found in the Notification object
     getNotificationRequestBody := *openapiclient.NewGetNotificationRequestBody() // GetNotificationRequestBody | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetNotificationHistory(appAuth, notificationId).GetNotificationRequestBody(getNotificationRequestBody).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetNotificationHistory(context.Background(), notificationId).GetNotificationRequestBody(getNotificationRequestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetNotificationHistory``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -910,6 +846,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2002**](InlineResponse2002.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -928,10 +868,6 @@ View notifications
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -941,8 +877,7 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -951,13 +886,9 @@ func main() {
     offset := int32(56) // int32 | Page offset.  Default is 0.  Results are sorted by queued_at in descending order.  queued_at is a representation of the time that the notification was queued at. (optional)
     kind := int32(56) // int32 | Kind of notifications returned:   * unset - All notification types (default)   * `0` - Dashboard only   * `1` - API only   * `3` - Automated only  (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetNotifications(appAuth).AppId(appId).Limit(limit).Offset(offset).Kind(kind).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetNotifications(context.Background()).AppId(appId).Limit(limit).Offset(offset).Kind(kind).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetNotifications``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -987,6 +918,10 @@ Name | Type | Description  | Notes
 
 [**NotificationSlice**](NotificationSlice.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -1005,10 +940,6 @@ View Outcomes
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -1018,8 +949,7 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1030,13 +960,9 @@ func main() {
     outcomePlatforms := "outcomePlatforms_example" // string | Optional Platform id. Refer device's platform ids for values. Example: outcome_platform=0 for iOS outcome_platform=7,8 for Safari and Firefox Default is data from all platforms if the parameter is omitted.  (optional)
     outcomeAttribution := "outcomeAttribution_example" // string | Optional Attribution type for the outcomes. The values can be direct or influenced or unattributed. Example: outcome_attribution=direct Default is total (returns direct+influenced+unattributed) if the parameter is omitted.  (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetOutcomes(appAuth, appId).OutcomeNames(outcomeNames).OutcomeNames2(outcomeNames2).OutcomeTimeRange(outcomeTimeRange).OutcomePlatforms(outcomePlatforms).OutcomeAttribution(outcomeAttribution).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetOutcomes(context.Background(), appId).OutcomeNames(outcomeNames).OutcomeNames2(outcomeNames2).OutcomeTimeRange(outcomeTimeRange).OutcomePlatforms(outcomePlatforms).OutcomeAttribution(outcomeAttribution).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetOutcomes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1072,6 +998,10 @@ Name | Type | Description  | Notes
 
 [**OutcomesData**](OutcomesData.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -1090,10 +1020,6 @@ View device
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -1103,8 +1029,7 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1112,13 +1037,9 @@ func main() {
     playerId := "playerId_example" // string | Player's OneSignal ID
     emailAuthHash := "emailAuthHash_example" // string | Email - Only required if you have enabled Identity Verification and device_type is email (11). (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetPlayer(appAuth, playerId).AppId(appId).EmailAuthHash(emailAuthHash).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetPlayer(context.Background(), playerId).AppId(appId).EmailAuthHash(emailAuthHash).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetPlayer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1151,6 +1072,10 @@ Name | Type | Description  | Notes
 
 [**Player**](Player.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -1169,10 +1094,6 @@ View devices
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -1182,8 +1103,7 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1191,13 +1111,9 @@ func main() {
     limit := "limit_example" // string | How many devices to return. Max is 300. Default is 300 (optional)
     offset := int32(56) // int32 | Result offset. Default is 0. Results are sorted by id; (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.GetPlayers(appAuth).AppId(appId).Limit(limit).Offset(offset).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.GetPlayers(context.Background()).AppId(appId).Limit(limit).Offset(offset).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetPlayers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1226,6 +1142,10 @@ Name | Type | Description  | Notes
 
 [**PlayerSlice**](PlayerSlice.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: Not defined
@@ -1244,10 +1164,6 @@ Update an app
 
 
 
-### Authorization
-
-[user_key](../README.md#user_key)
-
 ### Example
 
 ```go
@@ -1257,21 +1173,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     appId := "appId_example" // string | An app id
     app := *openapiclient.NewApp("Id_example") // App | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    userAuth := context.WithValue(context.Background(), onesignal.UserAuth, "USER_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.UpdateApp(userAuth, appId).App(app).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.UpdateApp(context.Background(), appId).App(app).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateApp``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1303,6 +1214,10 @@ Name | Type | Description  | Notes
 
 [**App**](App.md)
 
+### Authorization
+
+[user_key](../README.md#user_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -1321,10 +1236,6 @@ Edit device
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -1334,21 +1245,16 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
     playerId := "playerId_example" // string | Player's OneSignal ID
     player := *openapiclient.NewPlayer("Id_example", "AppId_example", int32(123)) // Player | 
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.UpdatePlayer(appAuth, playerId).Player(player).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.UpdatePlayer(context.Background(), playerId).Player(player).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdatePlayer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1380,6 +1286,10 @@ Name | Type | Description  | Notes
 
 [**InlineResponse2001**](InlineResponse2001.md)
 
+### Authorization
+
+[app_key](../README.md#app_key)
+
 ### HTTP request headers
 
 - **Content-Type**: application/json
@@ -1398,10 +1308,6 @@ Edit tags with external user id
 
 
 
-### Authorization
-
-[app_key](../README.md#app_key)
-
 ### Example
 
 ```go
@@ -1411,8 +1317,7 @@ import (
     "context"
     "fmt"
     "os"
-
-    "onesignal"
+    openapiclient "./openapi"
 )
 
 func main() {
@@ -1420,13 +1325,9 @@ func main() {
     externalUserId := "externalUserId_example" // string | The External User ID mapped to teh device record in OneSignal.  Must be actively set on the device to be updated.
     updatePlayerTagsRequestBody := *openapiclient.NewUpdatePlayerTagsRequestBody() // UpdatePlayerTagsRequestBody |  (optional)
 
-    configuration := onesignal.NewConfiguration()
-    apiClient := onesignal.NewAPIClient(configuration)
-
-    appAuth := context.WithValue(context.Background(), onesignal.AppAuth, "APP_KEY_STRING")
-
-    resp, r, err := apiClient.DefaultApi.UpdatePlayerTags(appAuth, appId, externalUserId).UpdatePlayerTagsRequestBody(updatePlayerTagsRequestBody).Execute()
-
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.DefaultApi.UpdatePlayerTags(context.Background(), appId, externalUserId).UpdatePlayerTagsRequestBody(updatePlayerTagsRequestBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdatePlayerTags``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1459,6 +1360,10 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InlineResponse2003**](InlineResponse2003.md)
+
+### Authorization
+
+[app_key](../README.md#app_key)
 
 ### HTTP request headers
 
